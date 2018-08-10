@@ -1,0 +1,67 @@
+Simple c++ project for checking EU VIES VAT 
+Win32 / Visual Studio
+
+Getting Started from scratch for Win32 
+
+1. Generating files.
+a. Download gSOAP GPLv2 edition from:
+   https://www.cs.fsu.edu/~engelen/soap.html
+
+   go to gsoap\bin\win32\
+   open command prompt there:
+
+b. generate checkVatService.h from http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl with wsdl2h.exe
+   wsdl2h.exe -I YOUR_PATH_TO\gsoap\WS -f -k -o checkVatService.h http://ec.europa.eu/taxation_customs/vies/checkVatService.wsdl
+
+c. generate rest of the files with soapcpp2.exe from checkVatService.h
+   soapcpp2.exe -C -L -I YOUR_PATH_TO\gsoap\import -w -x checkVatService.h
+
+d. Now you should have files inside your gsoap\bin\win32\:
+
+   checkVatBinding.nsmap
+   checkVatService.h
+   checkVatService.wsdl
+   soapC.cpp
+   soapClient.cpp
+   soapH.h
+   soapStub.h
+
+Information from wsdl2h.exe -help
+-Ipath  use path to find files
+-f      generate flat C++ class hierarchy
+-k      don't generate SOAP_ENV__Header mustUnderstand qualifiers
+-ofile  output to file
+
+Information from soapcpp2.exe -help
+-C      generate client-side code only
+-L      don't generate soapClientLib/soapServerLib
+-Ipath  use path(s) for #import (paths separated with ';')
+-w      don't generate WSDL and schema files
+-x      don't generate sample XML message files
+
+2. Creating project.
+a. Create new empty c++ project in Visual Studio
+
+b. Copy to our project directory:
+     checkVatBinding.nsmap
+     soapC.cpp
+     soapClient.cpp
+     soapH.h
+     soapStub.h
+     YOUR_PATH_TO\gsoap\stdsoap2.cpp
+     YOUR_PATH_TO\gsoap\stdsoap2.h
+
+c. Create new main.cpp file
+
+d. Disable Precompiled Headers for our project or in .cpp files
+   right click source file in Visual Studio/Solution Explorer/FILENAME -> Properties 
+     -> Configuration Properties 
+       -> C/C++ 
+         -> Precompiled Headers -> Precompiled Header -> Not Using Precompiled Headers
+   
+   repeat this for all Source Files
+
+
+Now you are ready to implement your solution for checking VIES VAT.
+
+3. Example soap call for VIES VAT.
