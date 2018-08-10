@@ -65,3 +65,8 @@ d. Disable Precompiled Headers for our project or in .cpp files
 Now you are ready to implement your solution for checking VIES VAT.
 
 3. Example soap call for VIES VAT.
+   //TODO
+   
+4. Additional links:
+  gSOAP eBay client example with ssl(HTTPS):
+  https://www.codeproject.com/Articles/30497/Creating-a-gSoap-eBay-Client-Application-with-Visu
